@@ -1,6 +1,6 @@
 
 import pandas as pd
-df = pd.read_csv('./machine/Fish.csv')
+df = pd.read_csv('./day02/Fish.csv')
 
 # Perch만 추출
 target_fish = df[df['Species'].isin(['Perch'])]
@@ -45,4 +45,22 @@ knr.fit(train_input , train_target) # 모델 학습
 print(knr.score(test_input , test_target))
 print(knr.predict(test_input))
 print(test_input) 
+
+# 임의의 길이 생성
+x = np.arange(5 ,45).reshape(-1,1)
+print(x)
+
+knr = KNeighborsRegressor()
+for k in [1,3,5,10] :
+    knr.n_neighbors = k
+    knr.fit(train_input , train_target) # 4번 학습
+
+    print(knr.score(test_input , test_target)) # 4번 학습평가
+    pred = knr.predict(x) # 임의의 값으로 예측
+    print(pred) # 총 45개의 물고기길이의 몸무게 예측한다
+
+    plt.scatter(train_input , train_target)
+    plt.plot(x, pred) # plot(선차트 이면서 회귀선)
+    plt.show()
+
 
