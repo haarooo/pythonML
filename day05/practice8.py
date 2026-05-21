@@ -25,7 +25,6 @@ test_poly = poly.transform(test_input)
 print(train_poly) # 3가지 특성
 
 
-
 from sklearn.preprocessing import StandardScaler
 ss = StandardScaler()
 ss.fit(train_poly)
@@ -50,11 +49,10 @@ sample_b = np.array([[2,60,5,9,4,50]])
 sample_a_poly = poly.transform(sample_a)
 sample_b_poly = poly.transform(sample_b)
 
-# 3. 모델 학습에 사용된 스케일러(StandardScaler) 적용
 sample_a_scale = ss.transform(sample_a_poly)
 sample_b_scale = ss.transform(sample_b_poly)
 
-# 4. SGDClassifier 모델을 통한 최종 분류 예측
+
 pred_a = sc.predict(sample_a_scale)
 pred_b = sc.predict(sample_b_scale)
 print(pred_a)
